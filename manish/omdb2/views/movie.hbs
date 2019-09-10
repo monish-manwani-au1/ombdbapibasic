@@ -1,0 +1,139 @@
+ <br>
+ <div class="container">
+      <div id="movie" class="well"></div>
+    </div>
+    
+    <br>
+    <br>
+    <div class="container">
+      <div class="row">
+      </div>
+    </div> 
+    
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+
+<script>
+  function getMovie(){
+    var movieId = sessionStorage.getItem('movieId');
+    console.log(movieId);
+    var idSearch ='http://www.omdbapi.com/?i='+movieId+'&apikey=9370112b'
+    console.log(idSearch);
+    
+
+    $.ajax({
+      url: idSearch,
+      type: 'GET',
+      dataType: 'text',
+      success: function (response) {
+          var result=JSON.parse(response);
+
+          //check if no movie found
+          if (result.Response == "False") {
+              $('#movie').html("<li class='list-group-item'>"+result.Error+"</li>");
+          }else{
+              var movie = result
+
+              var output =`
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="${movie.Poster}" class="thumbnail " style="border-radius: 5px">
+                  </div>
+                  <div class="col-md-8">
+                    <h2>${movie.Title}</h2>
+                    <ul class="list-group">
+                      <li class="list-group-item"><strong>Genre:</strong> ${movie.Genre}</li>
+                      <li class="list-group-item"><strong>Released:</strong> ${movie.Released}</li>
+                      <li class="list-group-item"><strong>Rated:</strong> ${movie.Rated}</li>
+                      <li class="list-group-item"><strong>IMDB Rating:</strong> ${movie.imdbRating}</li>
+                      <li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
+                      <li class="list-group-item"><strong>Writer:</strong> ${movie.Writer}</li>
+                      <li class="list-group-item"><strong>Actors:</strong> ${movie.Actors}</li>
+                       <li class="list-group-item"><strong>Plot:</strong>  ${movie.Plot}</li>
+                    </ul>
+                  </div>
+                </div>
+                <br>
+               <div class="container">
+                 <div class="row">
+                   <div class="col">
+                     
+                    <a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">View IMDB</a>
+                    <a href="/search" id="gobacktosearch" class="btn btn-default">Go Back To Search</a>
+                    <a class="btn btn-primary " id="reviewbtn" target="_blank" href="/movieReview/${movie.imdbID} ">View Reviews</a>
+
+                    <br>
+                    <hr>
+                   </div>
+                 </div>
+               </div>
+                <div class="container">
+                 <div class="row">
+                   <div class="col">
+                          <form action="">
+                          <div class="form-group">
+                            <label for="exampleFormControlTextarea1"><b>Add a Review</b></label>
+                           
+                            <textarea class="form-control" id="Textarea1" rows="5"></textarea>
+                          </div>
+                          <button onclick="myFunction()" movieID='${movie.imdbID}' movieReleased='${movie.Released}' movieTitle='${movie.Title}' type="button" id="reviewbtn1" class="btn btn-primary">submit</button>
+                        </form>
+
+                 </div>
+                 </div>
+               </div>
+              `;
+        
+              $('#movie').html(output);       
+              //binding event on movie list
+              addEventOnMovieList();
+          //    addEventOnViewReview();
+          }//catch
+      }
+  });//ajax closed
+
+}
+function myFunction() {
+  alert("Review Submitted Succesfully!");
+}
+
+
+//posting review through AJAX
+function addEventOnMovieList(){
+        
+        $("#reviewbtn1").on('click', function(event){
+           var data = {
+            movieID:  $(this).attr("movieID"),
+            movieReleased:  $(this).attr("movieReleased"),
+            movieTitle: $(this).attr("movieTitle"),
+            review: $('#Textarea1').val()
+           }
+          console.log("my"+data);
+
+            $.ajax({
+            type: "POST",
+            url: "/user/reviewData",
+            data: data,
+            dataType: 'json',
+            success: function(data){
+            console.log(data);
+                
+            }
+        });
+    });         
+};
+
+</script>
+
+ <script>
+    getMovie();
+  </script>
+  
+
+
+
+
+
