@@ -106,7 +106,7 @@ app.post('/user/reviewData', function(req, res){
 
     
 
-
+//view review button onclick
 app.get("/movieReview/:mymovieId", function(req, res)
 {  
          console.log(req.params); 

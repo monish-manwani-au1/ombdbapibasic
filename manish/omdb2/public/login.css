@@ -8,3 +8,7 @@
   #loginlink1{
     margin-left: 67pc;
   }
+
+  body{ 
+    overflow:hidden;
+  }

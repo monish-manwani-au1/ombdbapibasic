@@ -31,3 +31,8 @@
 /* #edtbtn{
   margin-left: 20%;
 } */
+
+body{ 
+  overflow:hidden;
+}
+
