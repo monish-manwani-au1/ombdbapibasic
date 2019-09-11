@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+.mt-0 {
+    margin-top: 150px !important;
+  }
+
+  #loginlink1{
+    margin-left: 67pc;
+  }
+
+  body{ 
+    overflow:hidden;
+  }

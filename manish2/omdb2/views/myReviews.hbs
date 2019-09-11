@@ -1,0 +1,116 @@
+ <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+
+               <div class="jumbotron jumbotron-fluid">
+                  <div class="container">
+                     <h1 class="display-4" style="text-align: center">My-Reviews</h1>
+                     <hr>
+                  </div>
+                  </div>
+
+                 <div class="list-group">
+                        {{#each data}}
+                    
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+
+                     <div class="d-flex w-100 justify-content-between">
+                        <h5 style="text-decoration: underline;" class="mb-1"> <strong>{{this.Review.movieTitle}}</strong></h5>
+  
+                        <h5>&nbsp; ({{this.Review.movieReleased}})</h5>
+                        <hr style="color: beige">
+                       
+                     </div>
+                     <p class="mb-1"><strong>Review&nbsp;: &nbsp;</strong> <h4>{{this.Review.review}}</h4></p>
+                     
+                  </a>
+                  <br>
+            
+
+                   <div class="container">
+                        <div class="row">
+                         
+                          <div class="col- -1">
+                           <button type="button" rel="modal:open" value="{{this._id}}" id="edtbtn" class="btn btn-warning editbtn1">Edit</button>
+                        <button type="submit" value="{{this._id}}" class="btn btn-danger deletebtn1">Delete</button>
+                        
+                          </div>
+                          
+                        </div>
+                      </div>
+                  <br>
+                     {{/each}}
+                  
+                  </div>
+
+               </div>
+               <div class="col-2"></div>
+            </div>
+         </div>
+          {{!-- popup modal for edit --}}
+                   <div class="modal fade" tabindex="-1" role="dialog" id="edit"  data-toggle="modal" aria-labelledby="basicModal"
+  aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit your review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+      <label for="comment">Review:</label>
+      <textarea class="form-control" rows="4" id="editreview">{{this.Review.review}}</textarea>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closebtn1" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary submitbtn1"  data-dismiss="modal" value="{{this._id}}">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- popup modal ends here --}}
+ <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+
+$('.editbtn1').click(function(e){
+  $('#edit').modal(); 
+   var data = "{{scriptData}}";
+data = JSON.parse(data.replace(/&quot;/g, '"'));
+ var id = $(this).prop('value');
+for(var i=0,n=data.length;i<n;i++){
+  if(data[i]._id == id){
+    $('#editreview').val(data[i].Review['review']);
+  }
+}
+  $('.submitbtn1').click(function(e){
+   var review = $('#editreview').val();
+   var request = {
+      "Review":review
+   }
+    $.ajax({
+       type:'PUT',
+       dataType:'json',
+       url:'http://localhost:3000/moviedbmr/myReviews/edit'+"?id="+id,
+       contentType:'application/json',
+       data: JSON.stringify(request),
+       success: function(data){
+          console.log(data);
+          window.location.href="/moviedbmr/myReviews";
+       }
+    })
+  }); 
+});
+</script>
+
+ 
+ 
+
+            

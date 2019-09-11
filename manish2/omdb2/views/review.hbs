@@ -1,0 +1,40 @@
+<div class="container">
+   <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+
+               <div class="jumbotron jumbotron-fluid">
+                  <div class="container">
+                     <h1 class="display-4" style="text-align: center">Movie Reviews</h1>
+                     <hr>
+                  </div>
+                  </div>
+
+                     <div class="list-group">
+                        {{#each data}}
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                     <div class="d-flex w-100 justify-content-between">
+                        <h5 style="text-decoration: underline;" class="mb-1"> {{this.email}}</h5>
+                        <hr style="color: beige">
+                       
+                     </div>
+                     <p class="mb-1">Review- <h4>{{this.Review.review}}</h4></p>
+                     
+                  </a>
+                  <br>
+                     {{/each}}
+                  
+                  </div>
+
+               </div>
+               <div class="col-2"></div>
+            </div>
+         </div>
+
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+            
