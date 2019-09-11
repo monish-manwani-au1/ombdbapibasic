@@ -1,30 +1,26 @@
-var express = require("express");
+var express = require('express');
 var exhbs = require("express-handlebars");
 var bodyparser = require("body-parser");
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var mongoClient = require('mongodb').MongoClient;
 var request = require('request');
 var app = express();
-var count =0;
-var counts =0;
-
-var db;
-var url="mongodb://localhost:27017"
-mongoClient.connect(url,function(err,client){
-    if(err){throw err}
-    db=client.db('MovieDB');
-})
+var login = require('./Routes/login');
+var signup = require('./Routes/signup');
+var news = require('./Routes/news');
 //app.use(upload.array());
 app.use(cookieParser());
-app.use(session({secret: "Your secret key"}));
+app.use(session({ secret: "Your secret key" }));
 
-app.engine('handlebars',exhbs());
-app.set('view engine','handlebars');
+app.engine('handlebars', exhbs());
+app.set('view engine', 'handlebars');
 
-app.use(bodyparser.urlencoded({extended:true}));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(express.static('public'));
+app.use('/login', login);
+app.use('/signup', signup);
+app.use('/news', news);
 
 
 /*app.get('/',function(req,res){
@@ -191,21 +187,20 @@ app.get('/signup', function(req, res){
         }
           })
     });*/
- 
- app.get('/logout', function(req, res){
-    req.session.destroy(function(){
-       console.log("user logged out.")
+
+app.get('/logout', function(req, res) {
+    req.session.destroy(function() {
+        console.log("user logged out.")
     });
     res.render("login");
- });
- 
- /*app.use('/mainpage', function(err, req, res, next){
- console.log(err);
-    //User should be authenticated! Redirect him to log in.
-    res.redirect('/login');
- });*/
- 
- app.listen("3000",function(){
-     console.log("running on 3000")
- });
- 
+});
+
+/*app.use('/mainpage', function(err, req, res, next){
+console.log(err);
+   //User should be authenticated! Redirect him to log in.
+   res.redirect('/login');
+});*/
+
+app.listen("3000", function() {
+    console.log("running on 3000")
+});
