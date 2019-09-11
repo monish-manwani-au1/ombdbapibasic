@@ -1,0 +1,94 @@
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/signup">SignUp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/login">Login</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
+
+ <!--div class="container">
+
+   <h3>
+  Newly Released Trailers
+  <small class="text-muted">(2019)</small>
+</h3>
+   <div class="row">
+  <div class="col-sm-6">
+    <div id="player1"></div>
+  </div>
+  <div class="col-sm-6"> 
+    <div class="card" id="player">
+      <div class="card-body">
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div id="player2"></div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card text-center"></div>
+    <div id="player3"></div>
+    </div>
+</div>
+<a href="https://www.youtube.com/results?search_query=new+trailers+of+indian+movies"><p class="text-right" style="text-size:10px">More trailers</p></a>
+ </div-->
+ <div class="container mt-4">
+     <h3>
+  Latest Entertainment News
+ 
+</h3>
+<div class="row" id="row1">
+{{#each articles.articles}}
+ <div class="card-group">
+   <div class ="column mt-4 mr-4 d-flex">
+      <div class="card text-center" style="width: 22rem;">
+        <div class="card-block">
+          <img class="card-img-top" src={{urlToImage}} alt="Card image cap">
+             <div class="card-body flex-fill">
+              <p class="card-text">{{description}}</p>
+       <a href={{url}} class="btn btn-primary" target="_blank">Read More</a>
+         <div class="card-footer">
+           <small class="text-muted">{{publishedAt}}</small>
+         </div>
+          </div>
+          </div>
+        </div>
+      </div>
+       </div>
+    {{/each}}
+    
+   <div class ="column mt-4 mr-4 ">
+      <div class="card text-center " style="width: 22rem; margin-top:20px">
+        
+           <div class="card-body">
+              <h1 class="card-text"> <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnVHZ0pKVGlnQVAB?hl=en-IN&gl=IN&ceid=IN%3Aen" target="_blank"><p class="text-center">>>Click Here For More Updates</p></a></h1>
+       </div>
+          
+        </div>
+      
+       </div>
+       </div>
+ </div>
+
+
+
+  
+    
