@@ -5,7 +5,7 @@ router.get("/movieInfo", function(req, res){
     if(req.session.loggedIn == true){
         res.render("movie",{
             title: "omdb search info",
-            style: "./omdb.css"
+            style: "omdb.css"
         //    script: "/main.js"
         
             

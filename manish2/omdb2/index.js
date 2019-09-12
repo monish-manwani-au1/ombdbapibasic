@@ -19,25 +19,25 @@ var app = express();
 app.use(bodyParser.json());
 
 
-app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
+app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs"}));
 app.set("view engine", "hbs");
 
 
 var url = 'mongodb://localhost:27017';
 
-mongoClient.connect(url, { useNewUrlParser: true }, function(error, client) {
-    if (error)
+mongoClient.connect(url, {useNewUrlParser: true}, function(error, client){
+    if(error)
         throw error;
-    db = client.db('projectdb');
+    db = client.db('projectdb');    
 });
 
 app.use(session({
-    secret: "express session "
+    secret : "express session "
 }));
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended : false}));
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 
 //router use
 app.use('/moviedbs', search);
@@ -72,7 +72,7 @@ app.use('/', login);
 //             title: "omdb search",
 //             style: "omdb.css",
 //             script: "/main.js"
-
+            
 //         });
 //     }else{
 //         res.redirect("/");
@@ -88,8 +88,8 @@ app.use('/', login);
 //             title: "omdb search info",
 //             style: "omdb.css"
 //         //    script: "/main.js"
-
-
+        
+            
 //         });
 //     }else{
 //         res.redirect("/");
@@ -102,8 +102,8 @@ app.use('/', login);
 //         res.render("movie",{
 //             title: "add review"
 //          //   script: "/main.js"
-
-
+        
+            
 //         });
 //     }else{
 //         res.redirect("/");
@@ -120,7 +120,7 @@ app.use('/', login);
 //         });
 //       });
 
-
+    
 
 //view review button onclick
 // app.get("/movieReview/:mymovieId", function(req, res)
@@ -135,9 +135,9 @@ app.use('/', login);
 //                 data: result,
 //                 title: "review"                    
 //             });
-
+            
 //         });
-
+   
 // });
 
 // app.get("/myReviews", function(req, res)
@@ -156,12 +156,12 @@ app.use('/', login);
 //                 script: "/delete.js"
 
 //             });        
-
+            
 //         });
 //     }else{
 //         res.redirect("/");
 //     }
-
+   
 // });
 
 // // edit button
@@ -189,6 +189,8 @@ app.use('/', login);
 
 // });
 
-app.listen(3000, function(req, res) {
+app.listen(3000, function(req, res){
     console.log("listening on port 3000")
 });
+
+

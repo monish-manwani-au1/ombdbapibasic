@@ -1,0 +1,43 @@
+<div>
+    
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+     <h1 class="text-center"><a href="/">MoviesDB</a></h1>
+<div class="d-flex justify-content-center align-items-center" style="margin-top:40px">
+       
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<form method="POST" action="login/loginauth" role="form">
+						<div class="form-group">
+							<h2>Log In</h2>
+						</div>
+						<div class="form-group">
+							<strong>Username</strong>
+							<input id="signinEmail" name="username" type="text" maxlength="50" class="form-control" required="true">
+						</div>
+						<div class="form-group">
+							<strong>Password</strong>
+							<input id="signinPassword" name="password" type="password" maxlength="25" class="form-control" required="true">
+						</div>
+                        
+						<div class="form-group" style="padding-top: 12px;">
+							<button id="signinSubmit" type="submit" class="btn btn-success btn-block">LogIn</button>
+						</div>
+						<div class="form-group divider">
+							{{#if message}}
+                            <p class="text-center" style="color: red">{{message}}</p>
+							{{/if}}
+							<hr class="left"><p class="text-center font-weight-light">New to MoviesDB?</p><hr class="right">
+						</div>
+						<p class="form-group"><a href="/signup" class="btn btn-info btn-block">Create an account</a></p>
+						<p class="form-group">By signing in you are agreeing to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

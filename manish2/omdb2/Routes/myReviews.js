@@ -15,7 +15,7 @@ router.get("/myReviews", function(req, res)
             res.render("myReviews.hbs",{
                 data: result,
                 scriptData:JSON.stringify(result),
-                style: "./omdb.css",
+                style: "omdb.css",
                 title: "myReviews",
                 script: "/delete.js"
 
