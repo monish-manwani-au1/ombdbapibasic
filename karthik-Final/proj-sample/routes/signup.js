@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/signauth', function(req, res) {
+    var db = req.app.locals.db;
     if (req.body.confirm_password != req.body.password) {
         res.render('signup.hbs', { style: '../../styles/sign.css', title: 'Sign-up', script: '../../scripts/search.js', alert: 'Passwords Does not Matches', li: 'pointer-events:none;display:none;' });
     } else {
