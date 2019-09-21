@@ -1,0 +1,98 @@
+<div class="container" style="margin:63px 10px 10px 50px;">
+  {{#if data}}
+  <div class="card-columns">
+    {{#each data}}
+    <div class="card" id="myreviewCards">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{this.title}}</h5>
+        <p class="card-text text-center">Year Of Released{{this.released}}</p>
+        <span class="buttons">
+          <button type="button" rel="modal:open" class="editButton" value="{{this._id}}"> <i class="far fa-edit">
+              Edit</i></button>
+          <button type="button" class="deleteButton float-right" value="{{this._id}}"><i class="fas fa-trash">
+              Delete</i></button>
+        </span>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="jumbotron jumbotron-fluid"
+    style="background-color: beige; margin-bottom:20px;margin-bottom: 20px;margin-top: 100px;margin-left: 176px;">
+    <div class="container">
+      <h1 class="display-4 text-center">No Results Found!!!..</h1>
+      <p class="lead text-center">I'm empty.Please write some reviews by searching and adding reviews for movies</p>
+    </div>
+  </div>
+  {{/if}}
+</div>
+{{#each data}}
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" data-toggle="modal" aria-labelledby="basicModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Your Review</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <textarea class="form-control" rows="4" id="editreview"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" style="border-radius: 4px;width: 11%;height: 34px;"
+          data-dismiss="modal">Close</button>
+        <button type="button" class="saveChanges" value="{{this._id}}">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+<script>
+  $('.editButton').click(function (e) {
+    $('#edit').modal();
+    var data = "{{reponseData}}";
+    data = JSON.parse(data.replace(/&quot;/g, '"'));
+    var id = $(this).prop("value");
+    for (var i = 0, n = data.length; i < n; i++) {
+      if (id == data[i]._id)
+        $('#editreview').val(data[i].review);
+    }
+    $('.saveChanges').click(function (e) {
+      var newreview = $('#editreview').val();
+      var id = $(this).prop("value");
+      var editedreview = {
+        review: newreview
+      };
+      $.ajax({
+        type: 'PUT',
+        dataType: 'JSON',
+        url: '/myreviews/editreview' + "?id=" + id,
+        data: JSON.stringify(editedreview),
+        contentType: 'application/json',
+        success: function (data) {
+          $('.modal-lg').append('<div class="alert alert-success1 text-center"  role="alert" id="alert"><strong>' + data.success + '</strong></div>');
+          setTimeout(function () {
+            window.location.href = '/myreviews';
+          }, 2000);
+        }
+      });
+    });
+
+  });
+  $('.deleteButton').click(function (e) {
+    var id = $(this).prop('value');
+    $.ajax({
+      type: 'DELETE',
+      dataType: 'JSON',
+      url: '/myreviews/deletereview/' + id,
+      success: function (data) {
+            window.location.href = '/myreviews';
+      }
+    });
+  });
+</script>

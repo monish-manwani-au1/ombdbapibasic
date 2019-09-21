@@ -1,0 +1,15 @@
+body {
+    box-sizing: border-box;
+    background-color: #FBF2F6;
+}
+
+.news {
+    background-color: #F5C52F;
+    border-color: #F5C52F;
+    color: #000000;
+    border-radius: 4px;
+}
+
+.news:active {
+    transform: translateY(2px);
+}

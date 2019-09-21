@@ -1,0 +1,24 @@
+{
+    "name": "proj-sample",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["expressJS", "NodeJS", "Jquery", "Bootstrap", "Handlebars", "Router"],
+    "author": "group04-au3",
+    "license": "ISC",
+    "dependencies": {
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.4",
+        "express": "^4.17.1",
+        "express-handlebars": "^3.1.0",
+        "express-session": "^1.16.2",
+        "express-toastr": "^2.0.2",
+        "hbs": "^4.0.4",
+        "mongodb": "^3.3.2",
+        "req-flash": "0.0.3"
+    },
+    "devDependencies": {}
+}
