@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <link rel="icon" href="/images/icon.jpg" type="image" sizes="16x16">
+    <title>{{title}}</title>
+    <script src="https://kit.fontawesome.com/269563ac17.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="{{style}}">
+</head>
+
+<body>
+    <navbar class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">
+        <img src="/images/logo.svg" class="img-responsive" alt="" height="40" width="40">
+        <h4 id="flickster">Flickster Movie</h4> 
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{search}}">
+                    <a class="nav-link" href="/boxoffice">MovieSearch</a>
+                </li>
+                <li class="nav-item {{myreviews}}">
+                    <a class="nav-link" href="/myreviews">MyReviews</a>
+                </li>
+                <li class="nav-item {{news}}">
+                    <a class="nav-link" href="/">News</a>
+                </li>
+                <li class="nav-item {{signup}}">
+                    <a class="nav-link" href="/signup">SignUp</a>
+                </li>
+                 <li class="nav-item {{login}}">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+        <li class="nav-item" style="{{li}}">
+          <a class="nav-link btn text-center" href="/logout" id="logout">Logout</a>
+      </li>   
+    </ul>
+  </div>
+    </navbar>
+    <div class="container h-100" id="newsearchbar">
+        <div class="d-flex justify-content-center h-100" id="search">
+            <div class="searchbar">
+                <input class="search_input" type="text" name="" placeholder="Enter the Movie title or part of the movie title" autocomplete="off"
+                    id="searchbar">
+                <a href="#" class="search_icon" id="submit"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{script}}"></script>
+    {{{body}}}
+</body>
+
+</html>

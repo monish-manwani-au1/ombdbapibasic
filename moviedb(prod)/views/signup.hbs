@@ -1,0 +1,35 @@
+<div class="container">
+    {{!-- Validation message --}}
+    {{#if alert}}
+    <div class="alert alert-danger alert-dismissible" style="margin-top: 88px;">
+        <a href="/signup" class="close" aria-label="close">&times;</a>
+        <strong>{{alert}}!</strong>
+    </div>
+    {{/if}}
+    <div class="signup-form" style="margin-top:78px;">
+        <form action="signup/signauth" method="post" autocomplete="off">
+            <h2>Sign Up</h2>
+            <p>Please fill in this form to create an account!</p>
+            <hr>
+            <div class="form-group">
+                <div class="col-xs-6"><input type="text" class="form-control" name="username" placeholder="First Name"
+                        required="required"></div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
+                    required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+            </div>
+        </form>
+        <p class="text-center small">Already have an account? <a href="/login" style="color: cornflowerblue;">Login
+                here!</a></p>
+    </div>
+</div>

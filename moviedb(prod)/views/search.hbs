@@ -1,0 +1,77 @@
+<div class="container">
+  <span id="message"></span>
+  <div class="row" style="margin-top: 26px;">
+  </div>
+</div>
+
+
+
+<script>
+  var movie_api = "{{movie_API}}";
+  var movie_key = "{{movie_key}}";
+  movie_api = JSON.parse(movie_api.replace(/&quot;/g, '"'));
+  movie_key = JSON.parse(movie_key.replace(/&quot;/g, '"'));
+  var imdbID = "";
+  $('#searchbar').keypress(function (e) {
+    // do something
+    var key = e.which;
+    // If the user clicks on enter after typing of a movie
+    if (key == 13) {
+      searchMovie();
+    }
+
+  });
+
+  function searchMovie() {
+    var searchString = $('#searchbar').val();
+    sessionStorage.setItem('search', searchString);
+    //ajax request for searching the movie through API
+    $.ajax({
+      dataType: "JSON",
+      url: movie_api + '?s=' + searchString + '&apikey=' + movie_key,
+      success: function (data) {
+        data = JSON.parse(JSON.stringify(data));
+        // If a movie is not present in the movie
+        if (data.Response == 'False') {
+          $('.row').html('');
+          $('#message').html('<h3 class="text-center">No Results Were Found</h3><br><br><p style="margin-left: 357px; margin-top: -34px;"><b>Eg:-Don2 should be entered as Don 2 in the search.</b></p>')
+        } else {
+          $('h1').hide();
+          $('#message').html('');
+          var dom = "";
+
+          for (var i = 0, n = data.Search.length; i < n; i++) {
+            dom += '<div class="col col-sm-4">';
+            dom += '<div class="card" style="margin-bottom: 10px;">';
+            //Image is not found
+            if (data.Search[i].Poster == 'N/A') {
+              dom += "<img class='card-img-top' src='/images/noposter.jpg' alt='card' id='moviecard' width='600' height='600'>";
+            } else {
+              dom += "<img class='card-img-top' src= '" + data.Search[i].Poster + "' alt='card' id='moviecard' width='600' height='600'>";
+            }
+            dom += '<div class="card-body">';
+            dom += '<h5 class="card-title text-center" style="margin-top:-53px;">';
+            dom += data.Search[i].Title;
+            imdbID = data.Search[i].imdbID;
+            dom += '<div class="container"><a href="/view/' + data.Search[i].imdbID + '"  class="btn btn-primary" style="font-family:Helvetica" id="viewdetails">View Details</a></div>'
+            dom += '</h5>';
+            dom += '</div>';
+            dom += '</div>';
+            dom += '</div>';
+          }
+
+          $('.row').html(dom);
+        }
+      }
+
+    });
+  }
+  //Session storage helps you to the store the values after refresh.
+document.querySelector("#searchbar").value = sessionStorage.getItem('search');
+  var searchbar = $('#searchbar').val();
+  if(searchbar != ""){
+    searchMovie();
+  }
+
+
+</script>

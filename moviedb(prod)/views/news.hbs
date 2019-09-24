@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <br>
+  <h3 class="text-left" style="margin-left:-16px;">
+    <br>
+    Latest Entertainment News
+  </h3>
+  <div class="row" id="row1">
+    {{#each articles.articles}}
+    <div class="card-group">
+      <div class="column mt-4 mr-4 d-flex">
+        <div class="card text-center" style="width: 22rem;">
+          <div class="card-block">
+            <img class="card-img-top" src={{urlToImage}} alt="Card image cap">
+            <div class="card-body flex-fill">
+              <p class="card-text">{{description}}</p>
+              <a href={{url}} class="btn news" target="_blank">Read More</a>
+              <div class="card-footer">
+                <small class="text-muted">{{publishedAt}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+    <div class="column mt-4 mr-4 ">
+      <div class="card text-center " style="width: 22rem; margin-top:20px">
+
+        <div class="card-body">
+          <h1 class="card-text"> <a
+              href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREpxYW5RU0FtVnVHZ0pKVGlnQVAB?hl=en-IN&gl=IN&ceid=IN%3Aen"
+              target="_blank">
+              <p class="text-center">>>Click Here For More Updates</p>
+            </a></h1>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+    {{#if alert}}
+    <div class="alert alert-danger alert-dismissible" style="margin-top: 98px;">
+        <a href="/login" class="close" aria-label="close">&times;</a>
+        <strong>{{alert}}!</strong>Please check your UserName and Password
+    </div>
+    {{/if}}
+    <div class="card card-container" style="margin-top: 85px;">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin" action="/login/login" method="POST" autocomplete="off">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required
+                autofocus>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password"
+                required>
+            <button class="btn btn-lg  btn-block btn-signin" type="submit">Sign in</button>
+        </form>
+        <p class="text-center small">Don't have an account? <a href="/signup" style="color: blue;">Sign up here!</a></p>
+    </div>
+</div>
