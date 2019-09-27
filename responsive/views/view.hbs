@@ -1,0 +1,114 @@
+<div class="container">
+
+    <div class="row" id="moviedetails">
+
+    </div>
+</div>
+<h3 class="text-left headercomments"><b></b></h3>
+<ul class="comment-section">
+</ul>
+
+
+<script>
+    //removing the search-bar 
+    $('#newsearchbar').remove();
+    var movie_api = "{{movie_API}}";
+    var movie_key = "{{movie_key}}";
+    movie_api = JSON.parse(movie_api.replace(/&quot;/g, '"'));
+    movie_key = JSON.parse(movie_key.replace(/&quot;/g, '"'));
+    var id = "{{data}}";
+    id = JSON.parse(id.replace(/&quot;/g, '"'));
+    var imdbID = "";
+    var title_movie = "";
+    var released = "";
+    $.ajax({
+        dataType: 'JSON',
+        url: movie_api + '?i=' + id.movieId + '&apikey=' + movie_key,
+        success: function (data) {
+            if (data.Response != 'False') {
+                title_movie = data.Title;
+                imdbID = data.imdbID;
+                released = data.Released;
+                var dom = "";
+                dom += '<div class="col col-sm-6">';
+                dom += '<div class="card" style="margin-top:100px;">'
+                dom += '<div class="card-body">';
+                dom += '<h1 class="card-title">';
+                dom += data.Title;
+                dom += '</h1>';
+                dom += '<img class="card-img-bottom" src="' + data.Poster + '" alt="card" id="moviecard" width="600" height="600">';
+                dom += '</div></div>';
+                dom += '<button type="button" class="btn btn-reviews float-center" style="font-family:Helvetica; margin-left:167px;margin-top:20px;" id="allreviews"><i class="far fa-eye"></i> View Reviews</button></div>';
+                dom += '<div class="col col-sm-6">';
+                dom += '<div id="information">'
+                dom += '<h6><b>Genre: </b>' + data.Genre + '</h6>';
+                dom += '<h6><b>Cast: </b>' + data.Actors + '</h6>';
+                dom += '<h6><b>Director: </b>' + data.Director + '</h6>';
+                dom += '<h6><b>IMDB -</b>' + data.imdbRating + '</h6>';
+                dom += '<h6><b>Language:</b> ' + data.Language + '</h6>';
+                dom += '<h6><b>Year Of Release:</b> ' + data.Released + '</h6>';
+                dom += '<h6><b>Duration:</b> ' + data.Runtime + '</h6>';
+                dom += '</div>';
+                dom += '<p class="plot"><b>Plot:</b> ' + data.Plot + '</p>';
+                dom += '<div id="reviews">';
+                dom += '<div class="form-group"><label for="comment"><b>Review:</b></label> <textarea class="form-control" rows="4" id="review"></textarea> </div>';
+                dom += '<button type="button" class="btn btn-primary float-center" style="font-family:Helvetica; margin-left:155px;" value="{{user}}"  id="addreview">+Add Review</button>';
+                dom += '</div>';
+
+                $('#moviedetails').append(dom);
+                $('#addreview').click(function (e) {
+                    var review = {
+                        movieID: imdbID,
+                        title: title_movie,
+                        review: $('#review').val(),
+                        released: released,
+
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'JSON',
+                        url: '/addreview/addreview',
+                        contentType: 'application/json',
+                        data: JSON.stringify(review),
+                        success: function (data) {
+                            if (data.success)
+                                $('.container').append('<div class="alert alert-success text-center" style="margin-bottom=100px;" role="alert" id="alert"><strong>' + data.success + '</strong></div>');
+                            else if (data.warning)
+                                $('.container').append('<div class="alert alert-danger text-center" style="margin-bottom=100px;" role="alert" id="danger"><strong>' + data.warning + '</strong></div>');
+                            setTimeout(function () {
+                                window.location.href = "/view/" + imdbID;
+                            }, 2000);
+                        }
+                    });
+                });
+
+
+                $('#allreviews').click(function (e) {
+                    var listDom = "";
+                    var headingDom = "";
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'JSON',
+                        url: '/viewreviews?movieID=' + imdbID,
+                        success: function (data) {
+                            if (data.length > 0) {
+                                headingDom += "<br>Reviews";
+                                for (var i = 0, n = data.length; i < n; i++) {
+                                    listDom += '<li class="comment user-comment"> <div class="info"><a href="">' + data[i].username + '-</a></div><p>' + data[i].review + '</p></li>'
+                                }
+                                $('h3').html(headingDom);
+                                $('.comment-section').html(listDom);
+                            }
+                            else {
+                                headingDom += "<br>Reviews";
+                                headingDom += '<div class="jumbotron jumbotron-fluid" style="background-color: tomato; border-color:black;margin-top: 25px; width:50%;""><div class="container"><h1 class="display-4 text-center">Not Found!!</h1><p class="lead text-center">Please Write Some Reviews for this Movie.</p></div></div>';
+                                $('h3').html(headingDom);
+                            }
+                        }
+                    });
+                });
+            }
+        }
+    });
+
+</script>

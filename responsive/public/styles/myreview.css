@@ -1,0 +1,106 @@
+body {
+    background-image: url(/images/myreview.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#addreview,
+#allreviews {
+    display: inline-block;
+}
+
+#addreview {
+    background-color: #F2B42E;
+    border-color: #F2B42E;
+    color: #1B2131;
+    font-weight: bold;
+}
+
+.editButton {
+    font-family: inherit;
+    font-weight: bolder;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.125rem;
+    padding: .5rem 1rem;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    background-color: #F2B42E;
+    border-color: #F2B42E;
+    border-radius: 6px;
+    color: #1B2131;
+}
+
+.deleteButton {
+    font-family: inherit;
+    font-size: .875rem;
+    font-weight: 700;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.125rem;
+    padding: .5rem 1rem;
+    margin: 0;
+    height: auto;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 6px;
+    color: #fff;
+    /* float: right; */
+}
+
+.deleteButton:active {
+    background-color: #dc3545;
+    transform: translateY(4px);
+}
+
+.saveChanges {
+    font-family: inherit;
+    font-size: .875rem;
+    font-weight: 700;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.125rem;
+    padding: .5rem 1rem;
+    margin: 0;
+    height: auto;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background-color: #F2B42E;
+    border-color: #F2B42E;
+    border-radius: 6px;
+    color: #1B2131;
+    font-weight: bolder;
+}
+
+#deleteButton {
+    border-radius: 6px;
+    border-width: inherit;
+    font-family: sans-serif;
+}
+
+.close {
+    font-family: inherit;
+    font-size: .875rem;
+    font-weight: 700;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.125rem;
+    padding: .5rem 1rem;
+    margin: 0;
+    height: auto;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bolder;
+}

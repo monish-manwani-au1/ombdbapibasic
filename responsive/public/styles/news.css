@@ -1,0 +1,29 @@
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .card{
+        width:100%;
+        display:block;
+        margin-left:60px;
+      
+      }
+      h3{width:100%;}
+    }
+   
+     
+  
+body {
+    box-sizing: border-box;
+    background-color: #FBF2F6;
+}
+
+.news {
+    background-color: #F5C52F;
+    border-color: #F5C52F;
+    color: #000000;
+    border-radius: 4px;
+}
+
+.news:active {
+    transform: translateY(2px);
+}
+
